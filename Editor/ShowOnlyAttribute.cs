@@ -32,12 +32,21 @@ public class ShowOnlyDrawer : PropertyDrawer
 			case SerializedPropertyType.Enum:
 				valueStr = prop.enumDisplayNames[prop.enumValueIndex];
 				break;
+			case SerializedPropertyType.ObjectReference:
+				valueStr = null;
+
+				EditorGUI.BeginDisabledGroup( true );
+				EditorGUI.ObjectField( position, prop, new GUIContent( label.text ) );
+				EditorGUI.EndDisabledGroup();
+				break;
 			default:
 				valueStr = "(not supported type)";
 				break;
 		}
 
-		EditorGUI.LabelField( position, label.text, valueStr );
+		if (valueStr is { }) {
+			EditorGUI.LabelField( position, label.text, valueStr );
+		}
 	}
 }
 #endif
