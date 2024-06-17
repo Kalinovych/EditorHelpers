@@ -3,9 +3,12 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using Application = UnityEngine.Application;
- 
+#endif
+
+
 public class CloudBuildSettingsHelper
 {
+#if UNITY_EDITOR
 	[MenuItem( "Tools/Unity Cloud Diagnostic/Disable", false, 300 )]
     public static void DisableCloudDiagnostic()
     {
@@ -50,5 +53,5 @@ public class CloudBuildSettingsHelper
             }
         }
     }
-}
 #endif
+}
